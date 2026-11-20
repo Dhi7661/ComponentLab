@@ -11,25 +11,39 @@ const buttonVariants: Record<ButtonVariant, string> = {
 }
 
 const buttonSizes: Record<Size, string> = {
-  sm: 'h-8 px-3 text-sm',
-  md: 'h-10 px-4 text-base',
-  lg: 'h-12 px-6 text-lg',
+  sm: 'h-8 px-3 text-sm gap-1.5',
+  md: 'h-10 px-4 text-base gap-2',
+  lg: 'h-12 px-6 text-lg gap-2.5',
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: Size
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
   fullWidth?: boolean
   className?: string
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', fullWidth = false, className, children, ...props }, ref) => {
+  (
+    {
+      variant = 'primary',
+      size = 'md',
+      leftIcon,
+      rightIcon,
+      fullWidth = false,
+      className,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
         className={cn(
-          'inline-flex items-center justify-center font-medium rounded-md transition-colors cursor-pointer',
+          'inline-flex items-center justify-center font-medium rounded-md transition-colors cursor-pointer select-none',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring',
           buttonVariants[variant],
           buttonSizes[size],
@@ -38,7 +52,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {...props}
       >
-        {children}
+        {leftIcon && (
+          <span className="inline-flex shrink-0 items-center justify-center" aria-hidden="true">
+            {leftIcon}
+          </span>
+        )}
+        {children && <span>{children}</span>}
+        {rightIcon && (
+          <span className="inline-flex shrink-0 items-center justify-center" aria-hidden="true">
+            {rightIcon}
+          </span>
+        )}
       </button>
     )
   },
