@@ -1,5 +1,6 @@
 import { ThemeProvider, useTheme } from './styles/theme-provider'
 import { siteContent } from './registry/content'
+import { Button } from './components/buttons/button'
 
 function ThemeToggle() {
   const { theme, resolvedTheme, setTheme, toggleTheme } = useTheme()
@@ -92,6 +93,66 @@ function TokenGallery() {
   )
 }
 
+function ButtonShowcase() {
+  return (
+    <section className="space-y-6 pt-6 border-t border-border">
+      <div>
+        <h2 className="text-xl font-semibold">{siteContent.button.title}</h2>
+        <p className="text-sm text-text-muted mt-1">{siteContent.button.description}</p>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <h3 className="text-sm font-medium text-text-muted mb-3">Variants</h3>
+          <div className="flex flex-wrap gap-3 items-center">
+            <Button variant="primary">{siteContent.button.primary}</Button>
+            <Button variant="secondary">{siteContent.button.secondary}</Button>
+            <Button variant="outline">{siteContent.button.outline}</Button>
+            <Button variant="ghost">{siteContent.button.ghost}</Button>
+            <Button variant="destructive">{siteContent.button.destructive}</Button>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-medium text-text-muted mb-3">Sizes</h3>
+          <div className="flex flex-wrap gap-3 items-center">
+            <Button size="sm">{siteContent.button.small}</Button>
+            <Button size="md">{siteContent.button.medium}</Button>
+            <Button size="lg">{siteContent.button.large}</Button>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-medium text-text-muted mb-3">States</h3>
+          <div className="flex flex-wrap gap-3 items-center">
+            <Button disabled>{siteContent.button.disabled}</Button>
+            <Button loading>{siteContent.button.loading}</Button>
+            <Button
+              leftIcon={
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clipRule="evenodd" />
+                </svg>
+              }
+            >
+              {siteContent.button.withLeftIcon}
+            </Button>
+            <Button
+              variant="outline"
+              rightIcon={
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                </svg>
+              }
+            >
+              {siteContent.button.withRightIcon}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function MainContent() {
   return (
     <div className="min-h-screen bg-bg text-text p-6 md:p-12 transition-colors">
@@ -105,6 +166,7 @@ function MainContent() {
         </header>
 
         <TokenGallery />
+        <ButtonShowcase />
       </div>
     </div>
   )
