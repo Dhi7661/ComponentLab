@@ -21,6 +21,25 @@ function getSystemTheme(): ResolvedTheme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
+function getInitialTheme(defaultTheme: Theme, storageKey: string): { theme: Theme; resolved: ResolvedTheme } {
+  if (typeof window === 'undefined') {
+    return { theme: defaultTheme, resolved: defaultTheme === 'system' ? 'light' : defaultTheme }
+  }
+
+  try {
+    const urlTheme = new URLSearchParams(window.location.search).get('theme') as Theme | null
+    if (urlTheme === 'light' || urlTheme === 'dark') {
+      return { theme: urlTheme, resolved: urlTheme }
+    }
+    const stored = localStorage.getItem(storageKey) as Theme | null
+    const chosen = stored || defaultTheme
+    const resolved = chosen === 'system' ? getSystemTheme() : chosen
+    return { theme: chosen, resolved }
+  } catch {
+    return { theme: defaultTheme, resolved: defaultTheme === 'system' ? getSystemTheme() : defaultTheme }
+  }
+}
+
 interface ThemeProviderProps {
   children: React.ReactNode
   defaultTheme?: Theme
@@ -32,21 +51,11 @@ export function ThemeProvider({
   defaultTheme = 'system',
   storageKey = STORAGE_KEY,
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return defaultTheme
-    try {
-      const stored = localStorage.getItem(storageKey) as Theme | null
-      return stored || defaultTheme
-    } catch {
-      return defaultTheme
-    }
-  })
+  const [initial] = useState(() => getInitialTheme(defaultTheme, storageKey))
+  const [theme, setThemeState] = useState<Theme>(initial.theme)
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(initial.resolved)
 
-  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() => {
-    if (theme === 'system') return getSystemTheme()
-    return theme
-  })
-
+  // Ensure DOM class is applied immediately on mount
   useEffect(() => {
     const root = document.documentElement
     const resolved = theme === 'system' ? getSystemTheme() : theme
@@ -59,6 +68,16 @@ export function ThemeProvider({
       root.classList.remove('dark')
     }
   }, [theme])
+
+  // Synchronous immediate application during initial render
+  if (typeof document !== 'undefined') {
+    const root = document.documentElement
+    if (resolvedTheme === 'dark' && !root.classList.contains('dark')) {
+      root.classList.add('dark')
+    } else if (resolvedTheme === 'light' && root.classList.contains('dark')) {
+      root.classList.remove('dark')
+    }
+  }
 
   useEffect(() => {
     if (theme !== 'system' || typeof window === 'undefined' || typeof window.matchMedia !== 'function') {

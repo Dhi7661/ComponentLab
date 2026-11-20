@@ -1,6 +1,8 @@
 # ComponentLab UI guide
 
-This file is the source of truth for the look of ComponentLab: layout, colors in light and dark mode, typography, and states. Color values are placeholders until they are checked against the Stitch Theme page.
+This file is the source of truth for the look of ComponentLab: layout, colors in light and dark mode, typography, and states.
+
+Color values come from ColorPalette_LightDark.xlsx. Where the palette has no separate value for a token, the token reuses the closest palette value, and the table says so.
 
 ## 1. Brand
 
@@ -9,7 +11,7 @@ This file is the source of truth for the look of ComponentLab: layout, colors in
 
 ## 2. Modes
 
-- Dark and light modes are both required. Dark is the first design, and light mirrors the same layout.
+- Light and dark modes are both required, with the same layout in each.
 - The site follows the system setting by default. The theme toggle in the top bar switches modes and saves the choice.
 - ThemeProvider adds the class "dark" to the html element in dark mode and removes it in light mode.
 
@@ -21,58 +23,62 @@ All values are written as light / dark.
 
 | Token | Light / Dark | Use |
 |---|---|---|
-| color-bg | #FFFFFF / #0B0F19 | Page background |
-| color-surface | #F8FAFC / #111827 | Sidebar, properties panel, cards |
-| color-stage | #F1F5F9 / #0B0F19 | Preview stage |
-| color-stage-dot | #CBD5E1 / #1F2937 | Dot pattern on the stage |
-| color-border | #E2E8F0 / #1F2937 | Dividers and panel edges |
-| color-border-strong | #CBD5E1 / #334155 | Outline buttons, inputs |
-| color-text | #0F172A / #F1F5F9 | Main text |
-| color-text-muted | #475569 / #94A3B8 | Descriptions, helper text, labels |
-| color-muted | #F1F5F9 / #1E293B | Hover and selected backgrounds |
+| color-bg | #EDF1F8 / #202124 | Page background |
+| color-surface | #F5F7FC / #292A2D | Panels, cards, properties panel |
+| color-sidebar | #E3E9F3 / #292A2D | Sidebar |
+| color-stage | #EDF1F8 / #202124 | Preview stage (same as page background) |
+| color-stage-dot | #C9D2E0 / #3C4043 | Dot pattern on the stage (same as border) |
+| color-border | #C9D2E0 / #3C4043 | Dividers and panel edges |
+| color-border-strong | #A9B4C7 / #5F6368 | Outline buttons and inputs |
+| color-text | #1B1F2A / #E8EAED | Main text |
+| color-text-muted | #4F5B6E / #9AA0A6 | Descriptions, helper text, labels |
+| color-muted | #DDE4F0 / #3C4043 | Hover backgrounds, including ghost and outline buttons |
 
 ### Brand and actions
 
 | Token | Light / Dark | Use |
 |---|---|---|
-| color-primary | #4F46E5 / #5B53E8 | Primary buttons, active sidebar item, selected tabs |
-| color-primary-hover | #4338CA / #6E66F0 | Hover state of primary |
-| color-on-primary | #FFFFFF / #FFFFFF | Text on primary |
-| color-focus-ring | #4F46E5 / #818CF8 | Keyboard focus ring |
-| color-secondary | #E0E7FF / #1E1B4B | Secondary buttons, avatar fallback |
-| color-on-secondary | #3730A3 / #C7D2FE | Text on secondary |
+| color-primary | #1A73E8 / #8AB4F8 | Primary buttons, selected tabs |
+| color-primary-hover | #1765CC / #AECBFA | Hover state of primary |
+| color-on-primary | #FFFFFF / #202124 | Text on primary |
+| color-focus-ring | #1A73E8 / #8AB4F8 | Keyboard focus ring |
+| color-secondary | #D3E3FD / #394457 | Secondary buttons, active sidebar item, avatar fallback |
+| color-secondary-hover | #BCD5FA / #46546B | Hover state of secondary |
+| color-on-secondary | #0B57D0 / #8AB4F8 | Text on secondary and on the active sidebar item |
 
 ### Status
 
 | Token | Light / Dark | Use |
 |---|---|---|
-| color-danger | #DC2626 / #DC2626 | Destructive buttons, error fills |
-| color-danger-text | #B91C1C / #F87171 | Error text |
-| color-success | #16A34A / #22C55E | Success icons and fills |
-| color-success-text | #15803D / #4ADE80 | Success text |
-| color-warning | #D97706 / #F59E0B | Warning icons and fills |
-| color-warning-text | #92400E / #FBBF24 | Warning text |
-| color-info | #2563EB / #3B82F6 | Info icons and fills |
-| color-info-text | #1D4ED8 / #60A5FA | Info text |
+| color-danger | #C5221F / #F28B82 | Destructive buttons, error fills |
+| color-danger-hover | #A51D1A / #F5A9A3 | Hover state of destructive |
+| color-danger-text | #C5221F / #F28B82 | Error text (same as danger) |
+| color-on-danger | #FFFFFF / #202124 | Text on danger |
+| color-success | #0D652D / #81C995 | Success icons and fills |
+| color-success-text | #0D652D / #81C995 | Success text (same as success) |
+| color-warning | #8A5A00 / #FDD663 | Warning icons and fills |
+| color-warning-text | #8A5A00 / #FDD663 | Warning text (same as warning) |
+| color-info | #1A73E8 / #8AB4F8 | Info icons and fills |
+| color-info-text | #0B57D0 / #8AB4F8 | Info text. Derived: the palette's #1A73E8 falls below 4.5:1 on the light background, so the darker blue is used for text. |
 
 ### Code
 
 | Token | Light / Dark | Use |
 |---|---|---|
-| color-code-bg | #F1F5F9 / #111827 | Code block background |
-| color-code-text | #0F172A / #E2E8F0 | Code text |
+| color-code-bg | #DDE4F0 / #1E1F20 | Code block background |
+| color-code-text | #1B1F2A / #E8EAED | Code text |
 
 ## 4. Button colors
 
 | Variant | Light background | Light text | Dark background | Dark text | Border |
 |---|---|---|---|---|---|
-| Primary | #4F46E5 | #FFFFFF | #5B53E8 | #FFFFFF | none |
-| Secondary | #E0E7FF | #3730A3 | #1E1B4B | #C7D2FE | none |
-| Outline | transparent | #0F172A | transparent | #F1F5F9 | 1px color-border-strong |
-| Ghost | transparent | #0F172A | transparent | #F1F5F9 | none |
-| Destructive | #DC2626 | #FFFFFF | #DC2626 | #FFFFFF | none |
+| Primary | #1A73E8 | #FFFFFF | #8AB4F8 | #202124 | none |
+| Secondary | #D3E3FD | #0B57D0 | #394457 | #8AB4F8 | none |
+| Outline | transparent | #1B1F2A | transparent | #E8EAED | 1px color-border-strong |
+| Ghost | transparent | #1B1F2A | transparent | #E8EAED | none |
+| Destructive | #C5221F | #FFFFFF | #F28B82 | #202124 | none |
 
-Hover: Primary uses color-primary-hover. Ghost uses color-muted. Destructive hover uses #B91C1C in both modes. Outline hover uses color-muted.
+Hover: Primary uses color-primary-hover. Outline and Ghost use color-muted. Secondary uses a shade one step darker than its background (light #BCD5FA, dark #46546B). Destructive uses #A51D1A in light mode and #F5A9A3 in dark mode.
 
 ## 5. Contrast rules
 
@@ -93,7 +99,7 @@ Hover: Primary uses color-primary-hover. Ghost uses color-muted. Destructive hov
 
 - Spacing: 4px base. Common values are 8, 12, 16, 24, and 32.
 - Radius: radius-sm 4px for checkboxes and chips. radius-md 8px for buttons, inputs, and menus. radius-lg 12px for cards, panels, and dialogs. radius-full for avatars and badges.
-- Shadow in light mode: shadow-sm is 0 1px 2px rgba(15,23,42,0.06). shadow-md is 0 4px 12px rgba(15,23,42,0.10).
+- Shadow in light mode: shadow-sm is 0 1px 2px rgba(60,64,67,0.3). shadow-md is 0 2px 6px 2px rgba(60,64,67,0.15). Use shadow-md only on menus and dialogs.
 - Shadow in dark mode: shadow-md is 0 4px 12px rgba(0,0,0,0.5). Dark mode relies on borders more than shadows.
 - Focus ring: 2px solid color-focus-ring with a 2px offset. Show it only for keyboard focus (:focus-visible).
 - Motion: 150ms for dialogs and menus, 200ms for toasts. With prefers-reduced-motion, remove movement and keep fades only.
@@ -107,7 +113,7 @@ Hover: Primary uses color-primary-hover. Ghost uses color-muted. Destructive hov
 - Right: "Components" link, "Design tokens" link, theme toggle, then GitHub and Storybook buttons. Show the GitHub and Storybook buttons only after their links exist.
 - Do not show a version badge, star count, or user avatar.
 
-### Sidebar (width 240px, sticky)
+### Sidebar (width 240px, sticky, background color-sidebar)
 
 Group labels are text-xs, uppercase, in color-text-muted.
 
@@ -118,7 +124,7 @@ Group labels are text-xs, uppercase, in color-text-muted.
 - Data display: Badge, Avatar, Card, Table
 - Feedback: Alert, Toast, Tooltip
 
-The active item uses color-primary with white text, weight 500, and radius-md. Inactive items use color-text-muted, and hover uses color-muted. Show only these 14 components.
+The active item uses color-secondary as its background and color-on-secondary as its text, with weight 500 and radius-md. Inactive items use color-text-muted, and hover uses color-muted. Show only these 14 components.
 
 ### Component page
 
@@ -130,7 +136,7 @@ From top to bottom:
 4. Import line in a monospace chip with a copy button. Example: import { Button } from './components/buttons/button'
 5. Preview panel:
    - Toolbar: a segmented control for "Mobile 375px", "Tablet 768px", and "Desktop 100%". On the right, a theme toggle for the preview and a Reset button.
-   - Stage: color-stage with a dot pattern, minimum height 320px, component centered.
+   - Stage: color-stage with a dot pattern in color-stage-dot, minimum height 320px, component centered.
    - Properties panel (width 320px, color-surface, border color-border): heading "Properties" with Reset.
      - Variant: segmented control with Primary, Secondary, Outline, Ghost, Destructive.
      - Size: segmented control with Small 32px, Medium 36px, Large 44px.

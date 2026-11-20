@@ -3,17 +3,17 @@ import { cn } from '../../utils/cn'
 import type { ButtonVariant, Size } from '../../types'
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-on-primary hover:bg-primary-hover active:bg-primary-hover/90',
-  secondary: 'bg-secondary text-on-secondary hover:bg-secondary/80 active:bg-secondary/70',
-  outline: 'border border-border-strong bg-transparent text-text hover:bg-muted active:bg-muted/80',
-  ghost: 'bg-transparent text-text hover:bg-muted active:bg-muted/80',
-  destructive: 'bg-danger text-on-danger hover:bg-danger-hover active:bg-danger-hover/90',
+  primary: 'bg-primary text-on-primary hover:bg-primary-hover',
+  secondary: 'bg-secondary text-on-secondary hover:bg-secondary-hover',
+  outline: 'border border-border-strong bg-transparent text-text hover:bg-muted',
+  ghost: 'bg-transparent text-text hover:bg-muted',
+  destructive: 'bg-danger text-on-danger hover:bg-danger-hover',
 }
 
 const buttonSizes: Record<Size, string> = {
-  sm: 'h-8 px-3 text-sm gap-1.5',
-  md: 'h-10 px-4 text-base gap-2',
-  lg: 'h-12 px-6 text-lg gap-2.5',
+  sm: 'h-8 px-3 text-sm gap-2',
+  md: 'h-9 px-4 text-sm gap-2',
+  lg: 'h-11 px-6 text-base gap-2',
 }
 
 const spinnerSizes: Record<Size, string> = {
