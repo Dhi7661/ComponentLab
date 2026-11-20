@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '../src/styles/theme-provider'
+import { AppLayout } from '../src/layouts/app-layout'
 import { HomePage } from '../src/pages/home-page'
 import { ComponentsIndexPage } from '../src/pages/components-index'
 import { ComponentDetailPage } from '../src/pages/component-detail-page'
@@ -14,25 +15,36 @@ function renderWithRouter(initialEntry: string) {
     <ThemeProvider>
       <MemoryRouter initialEntries={[initialEntry]}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/components" element={<ComponentsIndexPage />} />
-          <Route path="/components/:name" element={<ComponentDetailPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/components" element={<ComponentsIndexPage />} />
+            <Route path="/components/:name" element={<ComponentDetailPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Routes>
       </MemoryRouter>
     </ThemeProvider>,
   )
 }
 
-describe('App and Router', () => {
-  it('renders home page on root route', () => {
+describe('App Layout and Router', () => {
+  it('renders App with TopBar wordmark and Sidebar', () => {
     render(<App />)
+    expect(screen.getByRole('link', { name: siteContent.brand.name })).toHaveAttribute('href', '/')
+    expect(screen.getByRole('complementary', { name: 'Sidebar navigation' })).toBeInTheDocument()
+    expect(screen.getByRole('searchbox', { name: siteContent.nav.searchAriaLabel })).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { level: 1, name: siteContent.home.title }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: siteContent.home.browseButton }),
-    ).toHaveAttribute('href', '/components')
+  })
+
+  it('renders all 14 components in the sidebar', () => {
+    render(<App />)
+    const items = Object.values(siteContent.sidebar.items)
+    expect(items).toHaveLength(14)
+    items.forEach((item) => {
+      expect(screen.getByRole('link', { name: item })).toBeInTheDocument()
+    })
   })
 
   it('renders components index page on /components', () => {

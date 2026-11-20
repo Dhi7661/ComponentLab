@@ -2,13 +2,31 @@ import { useParams, Link } from 'react-router-dom'
 import { getComponent } from '../registry'
 import { siteContent } from '../registry/content'
 
+const knownComponents: Record<string, { name: string; category: string }> = {
+  button: { name: siteContent.sidebar.items.button, category: siteContent.sidebar.groups.buttons },
+  input: { name: siteContent.sidebar.items.input, category: siteContent.sidebar.groups.forms },
+  checkbox: { name: siteContent.sidebar.items.checkbox, category: siteContent.sidebar.groups.forms },
+  'radio-group': { name: siteContent.sidebar.items.radioGroup, category: siteContent.sidebar.groups.forms },
+  select: { name: siteContent.sidebar.items.select, category: siteContent.sidebar.groups.forms },
+  dialog: { name: siteContent.sidebar.items.dialog, category: siteContent.sidebar.groups.overlays },
+  'confirm-dialog': { name: siteContent.sidebar.items.confirmDialog, category: siteContent.sidebar.groups.overlays },
+  badge: { name: siteContent.sidebar.items.badge, category: siteContent.sidebar.groups.dataDisplay },
+  avatar: { name: siteContent.sidebar.items.avatar, category: siteContent.sidebar.groups.dataDisplay },
+  card: { name: siteContent.sidebar.items.card, category: siteContent.sidebar.groups.dataDisplay },
+  table: { name: siteContent.sidebar.items.table, category: siteContent.sidebar.groups.dataDisplay },
+  alert: { name: siteContent.sidebar.items.alert, category: siteContent.sidebar.groups.feedback },
+  toast: { name: siteContent.sidebar.items.toast, category: siteContent.sidebar.groups.feedback },
+  tooltip: { name: siteContent.sidebar.items.tooltip, category: siteContent.sidebar.groups.feedback },
+}
+
 export function ComponentDetailPage() {
   const { name } = useParams<{ name: string }>()
-  const component = name ? getComponent(name) : undefined
+  const registered = name ? getComponent(name) : undefined
+  const fallback = name ? knownComponents[name] : undefined
 
-  if (!component) {
+  if (!registered && !fallback) {
     return (
-      <div className="min-h-screen bg-bg text-text p-6 md:p-12 transition-colors">
+      <div className="p-6 md:p-12">
         <div className="max-w-3xl mx-auto space-y-4">
           <h1 className="text-3xl font-bold">{siteContent.notFound.title}</h1>
           <p className="text-text-muted">{siteContent.notFound.description}</p>
@@ -23,8 +41,11 @@ export function ComponentDetailPage() {
     )
   }
 
+  const displayName = fallback?.name || registered?.name
+  const displayCategory = fallback?.category || registered?.category
+
   return (
-    <div className="min-h-screen bg-bg text-text p-6 md:p-12 transition-colors">
+    <div className="p-6 md:p-12">
       <div className="max-w-3xl mx-auto space-y-6">
         <div>
           <Link
@@ -33,14 +54,14 @@ export function ComponentDetailPage() {
           >
             ← {siteContent.componentPage.backToIndex}
           </Link>
-          <h1 className="text-3xl font-bold tracking-tight">{component.name}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{displayName}</h1>
           <p className="text-sm text-text-muted mt-1 capitalize">
-            {siteContent.componentPage.categoryLabel}: {component.category}
+            {siteContent.componentPage.categoryLabel}: {displayCategory}
           </p>
         </div>
 
         <div className="p-4 rounded-lg bg-surface border border-border">
-          <p className="text-sm text-text-muted">{component.description}</p>
+          <p className="text-sm text-text-muted">{registered?.description || siteContent.componentPage.phaseNotice}</p>
         </div>
 
         <div className="p-4 rounded-lg bg-secondary text-on-secondary border border-border">
