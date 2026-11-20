@@ -3,13 +3,30 @@ import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import { siteContent } from '../registry/content'
 import { useTheme } from '../styles/theme-provider'
 
+function getPlatformShortcut(): string {
+  if (typeof navigator === 'undefined') {
+    return siteContent.nav.shortcutKeyMac
+  }
+  const nav = navigator as Navigator & {
+    userAgentData?: { platform?: string }
+  }
+  const platform = nav.userAgentData?.platform || nav.platform || ''
+  const isMac = /mac/i.test(platform)
+  return isMac ? siteContent.nav.shortcutKeyMac : siteContent.nav.shortcutKeyWindows
+}
+
 export function TopBar() {
   const { resolvedTheme, toggleTheme } = useTheme()
   const [searchParams] = useSearchParams()
   const urlQuery = searchParams.get('q') || ''
   const [searchQuery, setSearchQuery] = useState(urlQuery)
+  const [shortcutHint, setShortcutHint] = useState(() => getPlatformShortcut())
   const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    setShortcutHint(getPlatformShortcut())
+  }, [])
 
   useEffect(() => {
     setSearchQuery(urlQuery)
@@ -60,7 +77,7 @@ export function TopBar() {
         />
         <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">
           <kbd className="text-[10px] font-mono font-medium text-text-muted bg-muted border border-border px-1.5 py-0.5 rounded">
-            {siteContent.nav.shortcutKey}
+            {shortcutHint}
           </kbd>
         </div>
       </form>
@@ -93,7 +110,7 @@ export function TopBar() {
           }
         >
           {resolvedTheme === 'dark' ? (
-            <svg className="w-4 h-4 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <svg data-testid="sun-icon" className="w-4 h-4 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -102,7 +119,7 @@ export function TopBar() {
               />
             </svg>
           ) : (
-            <svg className="w-4 h-4 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <svg data-testid="moon-icon" className="w-4 h-4 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

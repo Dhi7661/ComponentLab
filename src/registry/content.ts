@@ -16,7 +16,8 @@ export const siteContent = {
     themeToggleDarkAria: 'Switch to dark mode',
     menuToggleAria: 'Open navigation menu',
     closeMenuAria: 'Close navigation menu',
-    shortcutKey: '⌘K',
+    shortcutKeyMac: '⌘K',
+    shortcutKeyWindows: 'Ctrl K',
   },
   sidebar: {
     overview: 'Overview',
