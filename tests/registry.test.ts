@@ -3,6 +3,8 @@ import {
   registerComponent,
   getComponent,
   getComponentsByCategory,
+  getAllComponents,
+  buttonEntry,
   type ComponentRegistryEntry,
 } from '../src/registry'
 
@@ -10,7 +12,7 @@ describe('Component Registry Schema', () => {
   it('registers and retrieves component entries', () => {
     const mockEntry: ComponentRegistryEntry = {
       id: 'mock-button',
-      name: 'Button',
+      name: 'Mock Button',
       category: 'buttons',
       description: 'Test button component',
       importPath: "import { Button } from '@/components/buttons/button'",
@@ -33,5 +35,10 @@ describe('Component Registry Schema', () => {
     expect(getComponent('mock-button')).toEqual(mockEntry)
     expect(getComponentsByCategory('buttons')).toContainEqual(mockEntry)
     expect(getComponentsByCategory('forms')).toHaveLength(0)
+  })
+
+  it('includes pre-registered Button entry', () => {
+    expect(getComponent('button')).toEqual(buttonEntry)
+    expect(getAllComponents()).toContainEqual(buttonEntry)
   })
 })

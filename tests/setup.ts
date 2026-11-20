@@ -1,12 +1,9 @@
 import '@testing-library/jest-dom/vitest'
-import * as matchers from 'vitest-axe/matchers'
-import { expect } from 'vitest'
-
-expect.extend(matchers)
 
 // Mock window.matchMedia for jsdom
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
+  configurable: true,
   value: (query: string) => ({
     matches: false,
     media: query,

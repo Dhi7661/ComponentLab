@@ -1,9 +1,13 @@
 import type { ComponentRegistry, ComponentRegistryEntry, ComponentCategory } from './schema'
+import { buttonEntry } from './button'
 
 export * from './schema'
 export * from './content'
+export * from './button'
 
-export const registry: ComponentRegistry = {}
+export const registry: ComponentRegistry = {
+  [buttonEntry.id]: buttonEntry,
+}
 
 export function registerComponent(entry: ComponentRegistryEntry): void {
   registry[entry.id] = entry
