@@ -4,7 +4,7 @@ This file lists token names, typography, and shape. The values for every color t
 
 Color tokens
 
-color-bg, color-surface, color-sidebar, color-stage, color-stage-dot, color-border, color-border-strong, color-text, color-text-muted, color-muted, color-primary, color-primary-hover, color-on-primary, color-focus-ring, color-secondary, color-on-secondary, color-danger, color-danger-text, color-success, color-success-text, color-warning, color-warning-text, color-info, color-info-text, color-code-bg, color-code-text
+color-bg, color-surface, color-sidebar, color-stage, color-stage-dot, color-border, color-border-strong, color-text, color-text-muted, color-muted, color-primary, color-primary-hover, color-on-primary, color-focus-ring, color-secondary, color-secondary-hover, color-on-secondary, color-danger, color-danger-hover, color-danger-text, color-on-danger, color-success, color-success-text, color-warning, color-warning-text, color-info, color-info-text, color-code-bg, color-code-text
 
 Typography
 Fonts: font-sans Inter, font-mono JetBrains Mono

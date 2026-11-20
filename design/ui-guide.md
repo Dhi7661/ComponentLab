@@ -43,6 +43,7 @@ All values are written as light / dark.
 | color-on-primary | #FFFFFF / #202124 | Text on primary |
 | color-focus-ring | #1A73E8 / #8AB4F8 | Keyboard focus ring |
 | color-secondary | #D3E3FD / #394457 | Secondary buttons, active sidebar item, avatar fallback |
+| color-secondary-hover | #BCD5FA / #46546B | Hover state of secondary |
 | color-on-secondary | #0B57D0 / #8AB4F8 | Text on secondary and on the active sidebar item |
 
 ### Status
@@ -50,7 +51,9 @@ All values are written as light / dark.
 | Token | Light / Dark | Use |
 |---|---|---|
 | color-danger | #C5221F / #F28B82 | Destructive buttons, error fills |
+| color-danger-hover | #A51D1A / #F5A9A3 | Hover state of destructive |
 | color-danger-text | #C5221F / #F28B82 | Error text (same as danger) |
+| color-on-danger | #FFFFFF / #202124 | Text on danger |
 | color-success | #0D652D / #81C995 | Success icons and fills |
 | color-success-text | #0D652D / #81C995 | Success text (same as success) |
 | color-warning | #8A5A00 / #FDD663 | Warning icons and fills |
