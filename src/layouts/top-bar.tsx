@@ -15,7 +15,13 @@ function getPlatformShortcut(): string {
   return isMac ? siteContent.nav.shortcutKeyMac : siteContent.nav.shortcutKeyWindows
 }
 
-export function TopBar() {
+export interface TopBarProps {
+  onOpenMenu?: () => void
+  menuButtonRef?: React.Ref<HTMLButtonElement>
+  isDrawerOpen?: boolean
+}
+
+export function TopBar({ onOpenMenu, menuButtonRef, isDrawerOpen }: TopBarProps = {}) {
   const { resolvedTheme, toggleTheme } = useTheme()
   const [searchParams] = useSearchParams()
   const urlQuery = searchParams.get('q') || ''
@@ -54,8 +60,29 @@ export function TopBar() {
 
   return (
     <header className="h-14 border-b border-border bg-bg sticky top-0 z-30 px-4 md:px-6 flex items-center justify-between gap-4">
-      {/* Left: Wordmark */}
-      <div className="flex items-center gap-3 shrink-0">
+      {/* Left: Mobile Menu Button & Wordmark */}
+      <div className="flex items-center gap-2 shrink-0">
+        {onOpenMenu && (
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={onOpenMenu}
+            className="md:hidden p-1.5 rounded-md bg-surface text-text border border-border hover:bg-muted transition-colors cursor-pointer flex items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
+            aria-label={siteContent.nav.menuToggleAria}
+            aria-expanded={isDrawerOpen}
+            aria-controls="mobile-navigation-drawer"
+          >
+            <svg
+              className="w-4 h-4 text-text"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        )}
         <Link
           to="/"
           className="text-lg font-semibold text-text tracking-tight hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring rounded"
@@ -133,4 +160,3 @@ export function TopBar() {
     </header>
   )
 }
-

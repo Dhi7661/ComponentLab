@@ -55,12 +55,9 @@ const sidebarGroups: SidebarGroup[] = [
   },
 ]
 
-export function Sidebar() {
+export function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <aside
-      aria-label="Sidebar navigation"
-      className="w-60 shrink-0 bg-sidebar border-r border-border sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-4 space-y-6"
-    >
+    <div className="space-y-6">
       {sidebarGroups.map((group) => (
         <div key={group.label} className="space-y-1">
           <div className="text-xs uppercase font-medium text-text-muted px-2.5 py-1 tracking-wider">
@@ -72,6 +69,7 @@ export function Sidebar() {
                 key={item.to}
                 to={item.to}
                 end={item.end}
+                onClick={onNavigate}
                 className={({ isActive }) =>
                   `block px-2.5 py-1.5 text-sm font-medium rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring ${
                     isActive
@@ -86,7 +84,17 @@ export function Sidebar() {
           </nav>
         </div>
       ))}
-    </aside>
+    </div>
   )
 }
 
+export function Sidebar() {
+  return (
+    <aside
+      aria-label="Sidebar navigation"
+      className="hidden md:block w-60 shrink-0 bg-sidebar border-r border-border sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-4 space-y-6"
+    >
+      <SidebarNav />
+    </aside>
+  )
+}
