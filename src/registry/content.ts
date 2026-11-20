@@ -7,6 +7,19 @@ export const siteContent = {
     tagline:
       'A reusable React and TypeScript UI component library with an interactive documentation site.',
   },
+  nav: {
+    components: 'Components',
+    designTokens: 'Design tokens',
+    overview: 'Overview',
+    introduction: 'Introduction',
+    allComponents: 'All components',
+    searchPlaceholder: 'Search components, props, tokens...',
+    searchAriaLabel: 'Search documentation',
+    themeToggleLightAria: 'Switch to light mode',
+    themeToggleDarkAria: 'Switch to dark mode',
+    menuToggleAria: 'Open navigation menu',
+    closeMenuAria: 'Close navigation menu',
+  },
   home: {
     title: 'Explore, preview and reuse UI components',
     subtitle:
@@ -14,6 +27,24 @@ export const siteContent = {
     browseButton: 'Browse components',
     tokensButton: 'Design tokens',
     categoriesHeading: 'Component Categories',
+  },
+  componentsIndex: {
+    title: 'All Components',
+    subtitle: 'Browse all accessible React and TypeScript components in ComponentLab.',
+    searchPlaceholder: 'Search components, props, tokens...',
+    filterAll: 'All',
+    emptyTitle: 'No components found',
+    emptyDescription: 'Try adjusting your search query or filter category.',
+  },
+  componentPage: {
+    phaseNotice: 'Interactive playground, properties panel, and code tabs coming in Phase 9.',
+    backToIndex: 'Back to components',
+    categoryLabel: 'Category',
+  },
+  notFound: {
+    title: 'Page not found',
+    description: 'The page you are looking for does not exist.',
+    backHome: 'Back to home',
   },
   categories: {
     buttons: {
@@ -43,6 +74,7 @@ export const siteContent = {
     },
   },
   button: {
+    name: 'Button',
     title: 'Button Component',
     description: 'Interactive button control with multiple variants, sizes, and states.',
     label: 'Click me',
