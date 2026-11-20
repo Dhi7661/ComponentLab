@@ -1,72 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --color-bg: #FFFFFF;
-  --color-surface: #F8FAFC;
-  --color-stage: #F1F5F9;
-  --color-stage-dot: #CBD5E1;
-  --color-border: #E2E8F0;
-  --color-border-strong: #CBD5E1;
-  --color-text: #0F172A;
-  --color-text-muted: #475569;
-  --color-muted: #F1F5F9;
+  --color-bg: #EDF1F8;
+  --color-surface: #F5F7FC;
+  --color-sidebar: #E3E9F3;
+  --color-stage: #EDF1F8;
+  --color-stage-dot: #C9D2E0;
+  --color-border: #C9D2E0;
+  --color-border-strong: #A9B4C7;
+  --color-text: #1B1F2A;
+  --color-text-muted: #4F5B6E;
+  --color-muted: #DDE4F0;
 
-  --color-primary: #4F46E5;
-  --color-primary-hover: #4338CA;
+  --color-primary: #1A73E8;
+  --color-primary-hover: #1765CC;
   --color-on-primary: #FFFFFF;
-  --color-focus-ring: #4F46E5;
-  --color-secondary: #E0E7FF;
-  --color-on-secondary: #3730A3;
+  --color-focus-ring: #1A73E8;
+  --color-secondary: #D3E3FD;
+  --color-secondary-hover: #BCD5FA;
+  --color-on-secondary: #0B57D0;
 
-  --color-danger: #DC2626;
-  --color-danger-hover: #B91C1C;
-  --color-danger-text: #B91C1C;
+  --color-danger: #C5221F;
+  --color-danger-hover: #A51D1A;
+  --color-danger-text: #C5221F;
   --color-on-danger: #FFFFFF;
-  --color-success: #16A34A;
-  --color-success-text: #15803D;
-  --color-warning: #D97706;
-  --color-warning-text: #92400E;
-  --color-info: #2563EB;
-  --color-info-text: #1D4ED8;
+  --color-success: #0D652D;
+  --color-success-text: #0D652D;
+  --color-warning: #8A5A00;
+  --color-warning-text: #8A5A00;
+  --color-info: #1A73E8;
+  --color-info-text: #0B57D0;
 
-  --color-code-bg: #F1F5F9;
-  --color-code-text: #0F172A;
+  --color-code-bg: #DDE4F0;
+  --color-code-text: #1B1F2A;
 
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.10);
+  --shadow-sm: 0 1px 2px rgba(60, 64, 67, 0.3);
+  --shadow-md: 0 2px 6px 2px rgba(60, 64, 67, 0.15);
 }
 
 .dark {
-  --color-bg: #0B0F19;
-  --color-surface: #111827;
-  --color-stage: #0B0F19;
-  --color-stage-dot: #1F2937;
-  --color-border: #1F2937;
-  --color-border-strong: #334155;
-  --color-text: #F1F5F9;
-  --color-text-muted: #94A3B8;
-  --color-muted: #1E293B;
+  --color-bg: #202124;
+  --color-surface: #292A2D;
+  --color-sidebar: #292A2D;
+  --color-stage: #202124;
+  --color-stage-dot: #3C4043;
+  --color-border: #3C4043;
+  --color-border-strong: #5F6368;
+  --color-text: #E8EAED;
+  --color-text-muted: #9AA0A6;
+  --color-muted: #3C4043;
 
-  --color-primary: #5B53E8;
-  --color-primary-hover: #6E66F0;
-  --color-on-primary: #FFFFFF;
-  --color-focus-ring: #818CF8;
-  --color-secondary: #1E1B4B;
-  --color-on-secondary: #C7D2FE;
+  --color-primary: #8AB4F8;
+  --color-primary-hover: #AECBFA;
+  --color-on-primary: #202124;
+  --color-focus-ring: #8AB4F8;
+  --color-secondary: #394457;
+  --color-secondary-hover: #46546B;
+  --color-on-secondary: #8AB4F8;
 
-  --color-danger: #DC2626;
-  --color-danger-hover: #B91C1C;
-  --color-danger-text: #F87171;
-  --color-on-danger: #FFFFFF;
-  --color-success: #22C55E;
-  --color-success-text: #4ADE80;
-  --color-warning: #F59E0B;
-  --color-warning-text: #FBBF24;
-  --color-info: #3B82F6;
-  --color-info-text: #60A5FA;
+  --color-danger: #F28B82;
+  --color-danger-hover: #F5A9A3;
+  --color-danger-text: #F28B82;
+  --color-on-danger: #202124;
+  --color-success: #81C995;
+  --color-success-text: #81C995;
+  --color-warning: #FDD663;
+  --color-warning-text: #FDD663;
+  --color-info: #8AB4F8;
+  --color-info-text: #8AB4F8;
 
-  --color-code-bg: #111827;
-  --color-code-text: #E2E8F0;
+  --color-code-bg: #1E1F20;
+  --color-code-text: #E8EAED;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -78,6 +82,7 @@
 
   --color-bg: var(--color-bg);
   --color-surface: var(--color-surface);
+  --color-sidebar: var(--color-sidebar);
   --color-stage: var(--color-stage);
   --color-stage-dot: var(--color-stage-dot);
   --color-border: var(--color-border);
@@ -91,6 +96,7 @@
   --color-on-primary: var(--color-on-primary);
   --color-focus-ring: var(--color-focus-ring);
   --color-secondary: var(--color-secondary);
+  --color-secondary-hover: var(--color-secondary-hover);
   --color-on-secondary: var(--color-on-secondary);
 
   --color-danger: var(--color-danger);
