@@ -1,13 +1,19 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import { siteContent } from '../registry/content'
 import { useTheme } from '../styles/theme-provider'
 
 export function TopBar() {
   const { resolvedTheme, toggleTheme } = useTheme()
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchParams] = useSearchParams()
+  const urlQuery = searchParams.get('q') || ''
+  const [searchQuery, setSearchQuery] = useState(urlQuery)
   const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    setSearchQuery(urlQuery)
+  }, [urlQuery])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
