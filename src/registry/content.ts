@@ -71,6 +71,13 @@ export const siteContent = {
   playground: {
     properties: 'Properties',
     reset: 'Reset',
+    viewport: {
+      mobile: 'Mobile 375px',
+      tablet: 'Tablet 768px',
+      desktop: 'Desktop 100%',
+    },
+    stageThemeLightAria: 'Switch preview to light mode',
+    stageThemeDarkAria: 'Switch preview to dark mode',
     labels: {
       variant: 'Variant',
       size: 'Size',
