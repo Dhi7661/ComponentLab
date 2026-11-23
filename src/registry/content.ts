@@ -71,6 +71,17 @@ export const siteContent = {
   playground: {
     properties: 'Properties',
     reset: 'Reset',
+    propsTable: {
+      title: 'Props API',
+      columns: {
+        prop: 'Prop',
+        type: 'Type',
+        default: 'Default',
+        description: 'Description',
+      },
+      requiredBadge: 'Required',
+      noDefault: '—',
+    },
     viewport: {
       mobile: 'Mobile 375px',
       tablet: 'Tablet 768px',
