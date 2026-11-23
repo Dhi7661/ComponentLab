@@ -82,6 +82,12 @@ export const siteContent = {
       requiredBadge: 'Required',
       noDefault: '—',
     },
+    codeSnippet: {
+      title: 'Code',
+      copy: 'Copy',
+      copied: 'Copied!',
+      defaultFileName: 'ButtonExample.tsx',
+    },
     viewport: {
       mobile: 'Mobile 375px',
       tablet: 'Tablet 768px',
