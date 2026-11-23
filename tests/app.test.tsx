@@ -54,10 +54,16 @@ describe('App Layout and Router', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders component placeholder on /components/:name', () => {
+  it('renders component placeholder on /components/:name for unregistered components', () => {
+    renderWithRouter('/components/input')
+    expect(screen.getByRole('heading', { level: 1, name: 'Input' })).toBeInTheDocument()
+    expect(screen.getByText(siteContent.componentPage.phaseNotice)).toBeInTheDocument()
+  })
+
+  it('renders component page with playground for registered components', () => {
     renderWithRouter('/components/button')
     expect(screen.getByRole('heading', { level: 1, name: 'Button' })).toBeInTheDocument()
-    expect(screen.getByText(siteContent.componentPage.phaseNotice)).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: siteContent.componentPage.tabs.code })).toBeInTheDocument()
   })
 
   it('renders not found page on unknown route with back home link', () => {
