@@ -65,8 +65,24 @@ export const siteContent = {
   },
   componentPage: {
     phaseNotice: 'Interactive playground, properties panel, and code tabs coming in Phase 9.',
+    fallbackDescription: 'Component documentation, playground, and examples are coming in a future phase.',
     backToIndex: 'Back to components',
+    breadcrumbComponents: 'Components',
     categoryLabel: 'Category',
+    copyImport: 'Copy import command',
+    copiedImport: 'Copied import command!',
+    tabs: {
+      code: 'Code',
+      props: 'Props API',
+      accessibility: 'Accessibility',
+    },
+    accessibility: {
+      heading: 'Accessibility',
+      keyboardHeading: 'Keyboard Navigation',
+      ariaHeading: 'ARIA Attributes',
+      contrastHeading: 'Contrast & Visual Guidelines',
+      noData: 'Accessibility documentation for this component will be added in its phase.',
+    },
   },
   playground: {
     properties: 'Properties',
