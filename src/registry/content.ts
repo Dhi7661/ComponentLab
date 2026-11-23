@@ -68,6 +68,37 @@ export const siteContent = {
     backToIndex: 'Back to components',
     categoryLabel: 'Category',
   },
+  playground: {
+    properties: 'Properties',
+    reset: 'Reset',
+    labels: {
+      variant: 'Variant',
+      size: 'Size',
+      children: 'Label',
+      leftIcon: 'Leading icon',
+      loading: 'Loading',
+      disabled: 'Disabled',
+      fullWidth: 'Full width',
+    },
+    icons: {
+      none: 'None',
+      arrowRight: 'Arrow right',
+      download: 'Download',
+      bookmark: 'Bookmark',
+    },
+    sizes: {
+      sm: 'Small 32px',
+      md: 'Medium 36px',
+      lg: 'Large 44px',
+    },
+    variants: {
+      primary: 'Primary',
+      secondary: 'Secondary',
+      outline: 'Outline',
+      ghost: 'Ghost',
+      destructive: 'Destructive',
+    },
+  },
   notFound: {
     title: 'Page not found',
     description: 'The page you are looking for does not exist.',

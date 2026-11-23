@@ -38,12 +38,21 @@ export function Example() {
       },
     },
     {
-      name: 'disabled',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Whether the button is disabled and prevents user interaction',
+      name: 'children',
+      type: 'React.ReactNode',
+      required: true,
+      description: 'The content or label to be rendered inside the button',
       control: {
-        type: 'boolean',
+        type: 'text',
+      },
+    },
+    {
+      name: 'leftIcon',
+      type: 'React.ReactNode',
+      description: 'Optional icon rendered before the button label',
+      control: {
+        type: 'select',
+        options: ['none', 'arrow-right', 'download', 'bookmark'],
       },
     },
     {
@@ -57,20 +66,27 @@ export function Example() {
       },
     },
     {
-      name: 'leftIcon',
-      type: 'React.ReactNode',
-      description: 'Optional icon rendered before the button label',
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Whether the button is disabled and prevents user interaction',
+      control: {
+        type: 'boolean',
+      },
+    },
+    {
+      name: 'fullWidth',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Whether the button should expand to fill the full width of its container',
+      control: {
+        type: 'boolean',
+      },
     },
     {
       name: 'rightIcon',
       type: 'React.ReactNode',
       description: 'Optional icon rendered after the button label',
-    },
-    {
-      name: 'children',
-      type: 'React.ReactNode',
-      required: true,
-      description: 'The content or label to be rendered inside the button',
     },
   ],
   accessibility: {
@@ -90,8 +106,10 @@ export function Example() {
   defaultProps: {
     variant: 'primary',
     size: 'md',
-    disabled: false,
-    loading: false,
     children: siteContent.button.label,
+    leftIcon: 'none',
+    loading: false,
+    disabled: false,
+    fullWidth: false,
   },
 }
