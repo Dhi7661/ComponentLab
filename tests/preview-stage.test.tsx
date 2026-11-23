@@ -39,6 +39,7 @@ describe('PreviewStage', () => {
     )
 
     const stage = screen.getByTestId('preview-stage')
+    expect(stage).toHaveClass('light')
     expect(stage).not.toHaveClass('dark')
 
     const toggleButton = screen.getByRole('button', {
@@ -51,6 +52,7 @@ describe('PreviewStage', () => {
 
     // Stage is now dark, but documentElement is untouched
     expect(stage).toHaveClass('dark')
+    expect(stage).not.toHaveClass('light')
     expect(document.documentElement.classList.contains('dark')).toBe(false)
     expect(screen.getByTestId('stage-sun-icon')).toBeInTheDocument()
 
@@ -58,8 +60,24 @@ describe('PreviewStage', () => {
     fireEvent.click(
       screen.getByRole('button', { name: siteContent.playground.stageThemeLightAria }),
     )
+    expect(stage).toHaveClass('light')
     expect(stage).not.toHaveClass('dark')
     expect(screen.getByTestId('stage-moon-icon')).toBeInTheDocument()
+  })
+
+  it('applies light class when document is in dark mode', () => {
+    document.documentElement.classList.add('dark')
+    render(
+      <PreviewStage initialTheme="light">
+        <div>Content</div>
+      </PreviewStage>,
+    )
+
+    const stage = screen.getByTestId('preview-stage')
+    expect(stage).toHaveClass('light')
+    expect(stage).not.toHaveClass('dark')
+
+    document.documentElement.classList.remove('dark')
   })
 
   it('resets viewport and stage theme and triggers onReset callback', () => {
@@ -79,6 +97,7 @@ describe('PreviewStage', () => {
     fireEvent.click(resetButton)
 
     expect(handleReset).toHaveBeenCalledTimes(1)
+    expect(stage).toHaveClass('light')
     expect(stage).not.toHaveClass('dark')
     expect(viewportContainer).toHaveClass('max-w-full')
   })

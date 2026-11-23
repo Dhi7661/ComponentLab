@@ -142,7 +142,7 @@ export function PreviewStage({
       <div
         data-testid="preview-stage"
         className={`w-full min-h-[320px] bg-stage bg-[radial-gradient(var(--color-stage-dot)_1px,transparent_1px)] [background-size:16px_16px] flex items-center justify-center p-6 overflow-x-auto transition-colors ${
-          previewTheme === 'dark' ? 'dark text-text' : 'text-text'
+          previewTheme === 'dark' ? 'dark text-text' : 'light text-text'
         }`}
       >
         <div

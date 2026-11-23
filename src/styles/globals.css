@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+.light {
   --color-bg: #EDF1F8;
   --color-surface: #F5F7FC;
   --color-sidebar: #E3E9F3;
